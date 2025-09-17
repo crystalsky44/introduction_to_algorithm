@@ -14,9 +14,9 @@ fn insert_sort(array: &mut [i32]) -> () {
     print!("in fn_insert_sort: ");
 
     
-    for item in 0..array.len() {
-        let key = item;
-        print!("{key} ");
+    for index in 0..array.len() {
+        // let key = item;
+        print!("{index} ");
         /*
         if key < array[array_position - 1] {
             array[array_position] = array[array_position - 1];
