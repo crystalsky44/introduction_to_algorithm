@@ -11,50 +11,50 @@ fn main() {
 }
 
 fn insert_sort(array: &mut [i32]) { 
-    println!("in fn_insert_sort: ");
+    // println!("in fn_insert_sort: ");
     
-    for mut index in 0..array.len() {
-        let key_index = index + 1;
-        println!("index in line 1: {index}");
-        println!("key_index in line 1: {key_index}");
-
-        if key_index > 11 {
-            break;
-        } else if array[key_index] > array[index] {
-            continue;
-        }
-
-        // end loop at the position where the key gets inserted
-        while array[key_index] < array[index] {
-            println!("inside comparing loop!");
-            println!("key_index's number in while loop: {}", array[key_index]);
-            println!("index's number in while loop: {}", array[index]);
-            index = if index < 1 { break } else { index - 1 };
-        }
-
-        // adjust index
-        index = if index > 0 { index + 1 } else { index };
-
-        println!("target position: {index}");
+    'key_loop: for key_index in 1..array.len() {
+        let mut index = key_index - 1;
+        // println!("index in line 1: {index}");
+        // println!("key_index in line 1: {key_index}");
+        if array[key_index] > array[index] { continue; }
 
         let key = array[key_index];
-        for shift_step in (index..=key_index).rev() {
-            println!("{shift_step}");
-            if shift_step > 0 { 
-                array[shift_step] = array[shift_step - 1];
-                println!("in shift_step");
-                print_array(array);
-            }        
-        }
-        array[index] = key;
-        println!("after move");
-        print_array(array);
 
-        /*
-        for shift_step in 0..key_index {
-
+        // end loop at the position where the key gets inserted
+        while key < array[index] {
+            // println!("inside comparing loop!");
+            // println!("key: {key}"); 
+            // println!("index's number in while loop: {}", array[index]);
+            array[index + 1] = array[index]; 
+            // println!("after move");
+            // print_array(array);
+            /*
+            if index < 1 { 
+                array[index] = key;
+                // println!("after inserting key");
+                // print_array(array);
+                continue 'key_loop;
+            } else { 
+                index -= 1;
+            };
+            */
+            if index > 0 {
+                index -= 1;
+            } else {
+                array[index] = key;
+                continue 'key_loop;
+            }
         }
-        */
+
+        // println!("target position: {}", index + 1);
+
+        // adjust index and insert the key's value
+        array[index + 1] = key;
+
+        // println!("after inserting key");
+        // print_array(array);
+
     }
 }
 
@@ -62,6 +62,5 @@ fn print_array(array: &mut [i32]) {
     for item in &*array {
         print!("{item} ");
     }
-
     println!();
 }
