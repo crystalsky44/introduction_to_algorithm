@@ -17,7 +17,7 @@ fn insert_sort(array: &mut [i32]) {
         let mut index = key_index - 1;
         // println!("index in line 1: {index}");
         // println!("key_index in line 1: {key_index}");
-        if array[key_index] > array[index] { continue; }
+        if array[key_index] > array[index] { continue }
 
         let key = array[key_index];
 
@@ -29,22 +29,13 @@ fn insert_sort(array: &mut [i32]) {
             array[index + 1] = array[index]; 
             // println!("after move");
             // print_array(array);
-            /*
-            if index < 1 { 
+            if index == 0 { 
                 array[index] = key;
                 // println!("after inserting key");
                 // print_array(array);
-                continue 'key_loop;
-            } else { 
-                index -= 1;
-            };
-            */
-            if index > 0 {
-                index -= 1;
-            } else {
-                array[index] = key;
-                continue 'key_loop;
-            }
+                continue 'key_loop
+            } 
+            index -= 1;
         }
 
         // println!("target position: {}", index + 1);
